@@ -13,7 +13,7 @@
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/youtube-section-downloader.git
+git clone https://github.com/DevlopRishi/yt-downloder/
 cd youtube-section-downloader
 ```
 
