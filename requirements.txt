@@ -2,4 +2,4 @@
 flask
 flask-cors
 pytube
-moviepy
+opencv-python-headless
