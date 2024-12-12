@@ -14,7 +14,7 @@
 1. Clone the repository
 ```bash
 git clone https://github.com/DevlopRishi/yt-downloder/
-cd yt-downloader
+cd yt-downloder
 ```
 
 2. Create a virtual environment
