@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YouTube Section Downloader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+        <h1 class="text-2xl font-bold mb-6 text-center">YouTube Video Section Downloader</h1>
+        
+        <form id="downloadForm" class="space-y-4">
+            <div>
+                <label for="url" class="block text-sm font-medium text-gray-700">YouTube Video URL</label>
+                <input 
+                    type="url" 
+                    id="url" 
+                    required 
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    placeholder="https://youtube.com/watch?v=..."
+                >
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="startTime" class="block text-sm font-medium text-gray-700">Start Time (seconds)</label>
+                    <input 
+                        type="number" 
+                        id="startTime" 
+                        min="0" 
+                        step="1" 
+                        value="0"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    >
+                </div>
+                
+                <div>
+                    <label for="endTime" class="block text-sm font-medium text-gray-700">End Time (seconds)</label>
+                    <input 
+                        type="number" 
+                        id="endTime" 
+                        min="1" 
+                        step="1"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    >
+                </div>
+            </div>
+            
+            <button 
+                type="submit" 
+                class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+                Download Video Section
+            </button>
+        </form>
+        
+        <div id="status" class="mt-4 text-center"></div>
+        <div id="downloadLink" class="mt-4 text-center"></div>
+    </div>
+
+    <script>
+        document.getElementById('downloadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const url = document.getElementById('url').value;
+            const startTime = document.getElementById('startTime').value;
+            const endTime = document.getElementById('endTime').value;
+            const statusDiv = document.getElementById('status');
+            const downloadLinkDiv = document.getElementById('downloadLink');
+            
+            // Reset previous state
+            statusDiv.innerHTML = '';
+            downloadLinkDiv.innerHTML = '';
+            
+            // Show loading state
+            statusDiv.innerHTML = '<p class="text-blue-600">Downloading and processing video...</p>';
+            
+            try {
+                // Send download request
+                const formData = new FormData();
+                formData.append('url', url);
+                formData.append('start_time', startTime);
+                formData.append('end_time', endTime);
+                
+                const response = await fetch('/download', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    statusDiv.innerHTML = `
+                        <p class="text-green-600">Video processed successfully!</p>
+                        <p>Title: ${result.video_title}</p>
+                        <p>Total Video Length: ${result.video_length} seconds</p>
+                    `;
+                    
+                    downloadLinkDiv.innerHTML = `
+                        <a 
+                            href="/get_video/${result.filename}" 
+                            class="text-indigo-600 hover:underline"
+                        >
+                            ⬇️ Download Trimmed Video
+                        </a>
+                    `;
+                } else {
+                    statusDiv.innerHTML = `<p class="text-red-600">Error: ${result.error}</p>`;
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `<p class="text-red-600">An unexpected error occurred: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
