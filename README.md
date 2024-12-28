@@ -1,99 +1,104 @@
 # YouTube Video Downloader
 
-A versatile YouTube Video Downloader script that allows you to:
-
-- Download full videos or specific sections (time-stamped).
-- Choose from multiple video quality options (144p to 4K).
+**A powerful and versatile YouTube Video Downloader script** that allows you to:  
+- Download full videos or specific sections (time-stamped).  
+- Choose from multiple video quality options (144p to 4K).  
 - Save videos with custom file names directly to your system.
 
-This script uses yt-dlp, a powerful tool for downloading videos from YouTube and other platforms.
-
-
----
-
-## Features
-
-✅ Download full videos or specific sections.
-✅ Quality selector from 144p to 4K (default: Best).
-✅ Save videos with custom file names (with extension bug fixed).
-✅ Lightweight and easy-to-use CLI interface.
-
+This script leverages the robust `yt-dlp` tool for downloading videos from YouTube and other platforms.
 
 ---
 
-## Installation
+## ✨ Features
 
-1. Clone or download the script:
-
-```curl -O https://github.com/DevlopRishi/YouTube-Downloader/raw/main/ytd.sh```
-
-
-2. Make the script executable:
-
-```chmod +x ytd.sh```
-
-
-3. Run the script:
-
-```./ytd.sh```
-
-
-
+✅ **Download Options**: Full video or specific time segments (start and end).  
+✅ **Quality Selector**: Choose from 144p, 360p, 720p, 1080p, 2K, 4K, or best available (default).  
+✅ **Custom File Naming**: Save with user-defined names (auto-fix extension issues).  
+✅ **Lightweight CLI Interface**: Easy and intuitive command-line experience.  
 
 ---
 
-## Usage
+## 🚀 Installation
 
-1. Run the script:
+1. **Download the Script**  
+   Use `curl` to download the script to your system:  
+   ```bash
+   curl -O https://github.com/DevlopRishi/YouTube-Downloader/raw/main/ytd.sh
+   ```
 
-```./ytd.sh```
+2. **Make the Script Executable**  
+   Grant execution permissions:  
+   ```bash
+   chmod +x ytd.sh
+   ```
 
+3. **Run the Script**  
+   Execute the script from your terminal:  
+   ```bash
+   ./ytd.sh
+   ```
 
-2. Follow the prompts:
+---
 
-- Enter the YouTube video URL.
+## 🛠️ Usage
 
-- Choose whether to download the full video or specify start and end times (format: HH:MM:SS).
+1. **Run the Script**  
+   Start the script by entering:  
+   ```bash
+   ./ytd.sh
+   ```
 
-- Select the video quality:
+2. **Follow the Prompts**  
+   - **Enter the YouTube Video URL**  
+     Paste the URL of the desired video.  
 
-```1. 144p
-2. 360p
-3. 720p
-4. 1080p
-5. 1440p (2K)
-6. 2160p (4K)
-7. Best (Default)```
+   - **Choose Download Mode**  
+     - Download the full video.  
+     - Download a specific segment (provide start and end times in `HH:MM:SS` format).  
 
-Provide a file name without extension.
+   - **Select Video Quality**  
+     Choose from the options provided:  
+     ```bash
+     1. 144p  
+     2. 360p  
+     3. 720p  
+     4. 1080p  
+     5. 1440p (2K)  
+     6. 2160p (4K)  
+     7. Best Available (Default)  
+     ```
 
-3. The video will be saved in the Downloads folder (or equivalent default storage on your system).
+   - **Specify File Name**  
+     Enter a custom name for the downloaded file (without the extension).  
 
-Requirements
+3. **Video Downloaded**  
+   The video will be saved in your system’s `Downloads` folder or a user-specified location.  
 
-yt-dlp: The script installs this automatically if not already installed.
+---
 
-Python: Installed automatically by the script.
+## 📦 Requirements
 
-Troubleshooting
+- **yt-dlp**: Automatically installed by the script if not already present.  
+- **Python**: Installed automatically by the script if required.  
 
-Common Issues:
+---
 
-"Permission Denied":
+## 🛠️ Troubleshooting
 
-Ensure the script is executable:
+**"Permission Denied" Error**  
+Ensure the script is executable:  
+```bash
+chmod +x ytd.sh
+```
 
-```chmod +x ytd.sh```
+**Storage Issues**  
+Ensure the `Downloads` folder exists and is accessible:  
+```bash
+mkdir -p ~/Downloads
+```
 
-Storage Setup Fails:
-
-Manually ensure the necessary folders are accessible:
-
-```mkdir -p ~/Downloads```
-
-
-Dependencies:
-
-Ensure your environment is updated:
-
-```sudo apt update && sudo apt upgrade -y```
+**Dependencies Update**  
+Keep your system updated to avoid compatibility issues:  
+```bash
+sudo apt update && sudo apt upgrade -y
+```
