@@ -102,3 +102,7 @@ Keep your system updated to avoid compatibility issues:
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
+```bash
+sudo pacman -Sy 
+sudo pacman -Syu
+```
